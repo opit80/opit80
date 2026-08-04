@@ -1,0 +1,46 @@
+name: generate snake animation
+
+on:
+  # her gün 03:00 UTC'de otomatik çalışır
+  schedule:
+    - cron: "0 3 * * *"
+
+  # Actions sekmesinden elle tetiklemek için
+  workflow_dispatch:
+
+  # main'e her push'ta
+  push:
+    branches:
+      - main
+
+jobs:
+  generate:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: generate snake svg
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-snake.svg
+            dist/github-snake-dark.svg?palette=github-dark
+
+      # snk animasyon hızını ayarlamıyor (stepDurationMs kaynakta sabit).
+      # Üretilen SVG'deki tek süre değerini 1.5x büyüterek yılanı yavaşlatıyoruz;
+      # keyframe'ler yüzde bazlı olduğu için animasyon orantılı olarak yavaşlar.
+      - name: slow down the snake (1.5x)
+        run: |
+          perl -pi -e 's/(\d+)ms/int($1*1.5)."ms"/ge' dist/*.svg
+          grep -o '[0-9]\+ms' dist/github-snake.svg | sort -u
+
+      - name: push to output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
