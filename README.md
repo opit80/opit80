@@ -32,4 +32,4 @@ Full-stack. Mostly TypeScript and Python.
   <img alt="contribution graph snake animation" src="https://raw.githubusercontent.com/opit80/opit80/output/github-snake.svg" />
 </picture>
 
-**Discord** &nbsp;`80opitt`
+**Discord** &nbsp;`80opit`
