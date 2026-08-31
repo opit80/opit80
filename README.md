@@ -1,6 +1,6 @@
 ### #opit
 
-Full-stack. Mostly TypeScript and Python.
+Full-stack. TypeScript & Python & Lua.
 
 **Stack**
 
