@@ -44,4 +44,4 @@ Full-stack. TypeScript & Python & Lua.
 
 **Discord** &nbsp;`80opit`
 
-![Profil görüntülenme](https://komarev.com/ghpvc/?username=opit80&label=profile%20views&color=0e75b6&style=flat)
+![Profil görüntülenme](https://hits.sh/github.com/opit80.svg?label=profile%20views&color=0e75b6&style=flat)
