@@ -15,5 +15,5 @@ Vibe coding, poking at LLMs, and running too many servers at home.
     <img alt="Discord: 80opit" src="https://raw.githubusercontent.com/opit80/opit80/main/assets/discord-light.svg" />
   </picture>
   &nbsp;
-  <img alt="profile views" src="https://hits.sh/github.com/opit80.svg?label=profile%20views&color=0e75b6&style=flat" />
+  <img alt="profile views" src="https://hits.sh/github.com/opit80.svg?label=profile%20views&color=8957e5&style=flat" />
 </p>

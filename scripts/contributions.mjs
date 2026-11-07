@@ -38,12 +38,13 @@ const THEMES = {
   light: { tiles: ['#efedf5', '#d8c9f8', '#b08ef0', '#8456dc', '#5a2bbf'], rest: 0.6, caption: '#818b98', number: '#59636e' },
 };
 
-const GAP = 13.4;
-const SIZE = 9.4;
-const RADIUS = 2.6;
-const PAD = 8;
-const width = Math.round(PAD * 2 + (weeks.length - 1) * GAP);
-const height = 124;
+// Fills the content width of a GitHub profile README on desktop, edge to edge.
+const width = 768;
+const GAP = width / (weeks.length - 1 + 0.7);
+const SIZE = GAP * 0.7;
+const RADIUS = SIZE * 0.28;
+const PAD = SIZE / 2;
+const height = Math.round(6 * GAP + SIZE + 30);
 
 function render(theme) {
   const t = THEMES[theme];
@@ -54,7 +55,7 @@ function render(theme) {
       const py = (PAD + y * GAP - SIZE / 2).toFixed(1);
       // The sweep travels from the top-left corner to the bottom-right one.
       const sweep = level ? ` class="on" style="animation-delay:${((x + y * 2.2) * 0.04).toFixed(2)}s"` : '';
-      tiles.push(`<rect x="${px}" y="${py}" width="${SIZE}" height="${SIZE}" rx="${RADIUS}" fill="${t.tiles[level]}"${sweep}/>`);
+      tiles.push(`<rect x="${px}" y="${py}" width="${SIZE.toFixed(1)}" height="${SIZE.toFixed(1)}" rx="${RADIUS.toFixed(1)}" fill="${t.tiles[level]}"${sweep}/>`);
     });
   });
 
@@ -68,7 +69,7 @@ function render(theme) {
 .num{fill:${t.number}}
 </style>
 ${tiles.join('\n')}
-<text class="cap" x="${width - PAD}" y="${height - 6}" text-anchor="end"><tspan class="num">${total}</tspan> contributions · past year</text>
+<text class="cap" x="${width}" y="${height - 6}" text-anchor="end"><tspan class="num">${total}</tspan> contributions · past year</text>
 </svg>
 `;
 }
