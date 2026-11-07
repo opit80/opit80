@@ -1,0 +1,38 @@
+name: draw contributions
+
+on:
+  # every day at 03:00 UTC
+  schedule:
+    - cron: "0 3 * * *"
+  # manual run from the Actions tab
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  draw:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: draw contribution svgs
+        run: node scripts/contributions.mjs ${{ github.repository_owner }} dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: push to output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
