@@ -48,7 +48,7 @@ const THEMES = {
 };
 
 // Fills the content width of a GitHub profile README on desktop, edge to edge.
-const width = 768;
+const width = 848; // widest the README column gets; narrower screens scale it down
 const GAP = width / (weeks.length - 1 + 0.7);
 const SIZE = GAP * 0.7;
 const RADIUS = SIZE * 0.28;
